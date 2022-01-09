@@ -1,0 +1,155 @@
+---
+title: "Estructuras de datos R"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+```
+
+# Tipos de datos
+Un vector es una secuencia ordenada de datos. R dispone de los siguientes tipos de datos:
+
+
+- **logical**: (True or False)
+- **integer**: $\mathbb Z$
+- **numeric**: $\mathbb R$
+- **complex**: $\mathbb C$
+
+En los vectores de `R`, todos sus objetos han de ser del mismo tipo: todos números, todos palabras, etc. Cuando queramos usar vectores formados por objetos de diferentes tipos, tendremos que usar **listas generalizadas**, `lists` que veremos al final del tema.
+
+
+## Creacions básicas
+
+
+- **c()**: crear un vector
+- **scan(0)**: definir un vector
+- **fix(x)**: modificar visualmente un vector `x`
+- **rep(a,n)**: crear un vector que contiene el dato $a$ repetido $n$ veces
+
+
+
+### Ejemplo
+
+
+```{r}
+c(1,2,3)
+rep("Mates",7)
+```
+
+
+## Pogresiones y secuencias
+
+Una progresión aritmética es una sucesión de números tales que la **diferencia**, $d$, de cualquier par de términos sucesivos de la secuencia es constante.
+$$a_n = a_1 + (n-1)\cdot d$$
+
+
+- **seq(a,b,by=d)**: para generear una progresión aritmética de diferencia $d$ que empiezaen $a$ y termina en $b$
+ ```{r}
+ seq(5,60,by=5)
+ ```
+- **seq(a,b,length.out=n)**: define una progresión aritmética de longitud $n$ que va de $a$ a $b$ con difernecia $d=\frac{b-a}{n-1}$. ($n$ es la cantidad de elementos del array)
+
+```{r}
+seq(4, 35, length.out=7)
+```
+- **seq(a,by=d, length.out=n)**: define la progresión aritmética de longitud $n$ y diferencia $d$ que empieza en $a$
+```{r}
+seq(4, by=25, length.out=3)
+```
+- **a:b**: define la secuencia de números **enteros** ($\mathbb{Z}$) consecutivos entre dos números $a$ y $b$
+```{r}
+1:9
+```
+
+
+## Funciones
+
+Cuando queremos aplicar una función a cada uno de los elementos de un vector de datos, la función `sapply` nos ahorra tener que programar con bucles en `R`:
+
+
+- **sapply(nombre_del_vector, FUN=nombre_de_la_función)**: para aplicar dicha función a dodos los elementos del vector
+```{r}
+x = 1:10
+sapply(x, FUN=function(x){sqrt(x)})
+```
+- **sqrt(x)**`: calcula un nuevo vector con las raíces cuadradas de cada uno de los elementos del vector $x$
+```{r}
+x = 1:10
+x
+x + pi
+x * pi
+sqrt(x)
+2^x
+x^2
+```
+- **mean(x)**: calcula la media arimtética de las entradas  del vector x
+
+```{r}
+mean(1:10)
+```
+- **diff(x)**: cañcula el vector formado  por las diferencias sucesivas  entre entradas del vector original
+
+```{r}
+diff(1:10)
+```
+
+- **cumsum(x)**: calcula el vector formado por las sumas acumuladas de las entradas del vector original $x$
+	- Permite definir sucesiones descritas mediante sumatorios
+	- Cada entrada de *cumsum(x)* es la suma de las entradas de $x$ hasta su posición
+```{r}
+cumsum(1:10)
+```
+
+## Orden
+
+
+- **sort(x)**: ordena el vector en orden natural de los objetos que lo forman: el orden numérico creciente, orden alfabético...
+- **rev(x)**: invierte el orden de los elementos del vector $x$
+
+```{r}
+v = c(1,7,5,2,4,6,3)
+sort(v)
+rev(v)
+```
+
+## Otros
+
+- **length(x)** : longitud del vector
+- **max(x)** : elemento máximo del vector
+- **min(x)** : mínimo del vector
+- **sum(x)** : suma de todos los elementos del vector
+- **prod(x)** : producto de todos los elementos del vector
+
+
+```{r}
+x = 1:10
+length(x)
+max(x)
+min(x)
+sum(x)
+prod(x)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
