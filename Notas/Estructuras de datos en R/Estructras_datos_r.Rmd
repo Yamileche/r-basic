@@ -131,8 +131,134 @@ sum(x)
 prod(x)
 ```
 
+# Subvectores
+
+- **Vector[i]**: da la $i$-esima entrada  del vector
+  - Los índices en $R$ empiezan en $1$
+  - **vector(length(vector))** nos da la última entrada del vector
+  - **vecntor[a:b]**: si $a$ y $b$ son naturales, nos da el subvector con las entradas del vector original  que van de la posición $a$-ésima hasta la $b$-ésima
+  - **vector[-i]**: si $i$ es un número, este subvector está formado por todas las entradas del vector original menos la entrada $i$-ésima. Si $i$ resulta ser un vector, entonces es un vector de índices y crea un nuevo vector con las entradas del vector original,cuyos índices pertenecen a $i$
+  - **vector[-x]**: si $x$ es un vector (de índices), entonces este es el complementario de vector[$x$]
+
+- También podemos utilizar operadores lógicos:
+	
+	- **==**: =
+	- **!=**: $\neq$
+	- **>=**: $\ge$
+  - **<=**: $\le$
+  - **<**: $<$
+  - **>**: $>$
+  - **!**: NO lógico
+  - **&**: Y lógico
+  - **|**: O lógico
+
+```{r}
+v = c(14,5,6,19,32,0,8)
+v[2]
+v[-c(3,5)] # no aparecen los elementos de las posiciones 3 y 5
+v[v != 19 & v > 15] # elementos que no  son 19 y mayores a 15
+```
+
+## Condicionales
+
+- **which(x cumple condición)**: para obtener los índices de las entradas del vector $x$ que satisfacen la condición dada
+- **which.min(x)**: nos da la primera posición en la que el vector $x$ toma su valor mínimo
+- **which(x==min(x))**: da todas las posiciones en las que el vector $x$ toma sus valores mínimos
+- **which.max(x)**: nos da la primera posición en la que el vector $x$ toma su valor máximo
+- **which(x==max(x))**: da todas las posiciones en las que el vector $x$ toma sus valores máximos
+
+## Ejemplos
+
+```{r}
+x = seq(3, 50, by=3.5)
+x
+x[3]
+x[length(x)]
+x[length(x)-2]
+x[-3] # Se quita la tercer entrada
+x[8:4] # da de la posición 8 a la 4 
+x[seq(2,length(x), by=2)] # los de posición par
+x[-seq(2,length(x), by=2)] # quitar los de posición par
+x[c(1,5,6)] #Da los de posición 1, 5 y 6
+# Da los elementos que son mayores a 5 (x>5 da una lista booleana de los elementos de x que 
+# son mayores  5)
+x[x>5] 
+x>5
+x = c(6,7,4,2,4,8,9,2,9)
+y = c(5,2,-3,5,-1,4-2,7,1)
+# y%%2==0 da las posiciones de y cuyos valores son pares y tomamos esas posiciones y 
+x[y%%2==0]
+which(x>4) # la las posiciones de los elementos de x que son mayores que 4
+which.max(x) # Da la primera posición del elemento más grande en x
+which(x == max(x)) # Da todas las posiciones del elemento máximo de x
+x[x<0] # es vacío
+which(x<0) #En posiciones
+```
 
 
+## Valores NA
+```{r}
+x = seq(1, 10, by=1)
+x[11] # no existe elemento en la posición 11
+x[11]=11 # se le agrega un elemento en la posición 11
+x
+x[15]=15 # Se le agrega un elemento en la posición 15
+x # se rellena con NA
+mean(x) # no puede operar porque tiene valores NA
+mean(x, na.rm = TRUE) # quita loe elementos NA
+which(is.na(x)) # Da las posiciones de los elementos NA
+which(x==NA) # Da vacío
+y=x 
+y[is.na(y)] = mean(y,na.rm = TRUE) # Cambiamos los NA por la media
+y
+x[!is.na(x)] # da los elementos que no son NA
+cumsum(x[!is.na(x)]) #Para funciones que no admiten na.rm
+y=na.omit(x) # Se quitan los NA
+cumsum(y)
+y # tiene atributos "na.accion" y "class"
+attr(y,"na.action")= NULL # se quita el atributo 
+attr(y,"class")= NULL # se quita el atributo 
+y
+```
+
+## Factor
+
+<l class="definition">Factor</l>: es como un vector, pero con una estructura interna más rica que permite usarlo para clasificar observaciones
+
+- **levels**: atributo del factor. Cada elemento del factor es igual a un nivel. Los niveles clasifican las entradas del factor. Se ordenan por orden alfabético
+- Para definir un factor, primero hemos de definir un vector y trasformarlo por medio de una de las funciones `factor()` o `as.factor()`.
+
+## La función factor()
+
+- `factor(vector,levels=...)`: define un factor a partir del vector y dispone de algunos parámetros que permiten modificar el factor que se crea:
+  
+    - `levels`: permite especificar los niveles e incluso añadir niveles que no aparecen en el vector
+    - `labels`: permite cambiar los nombres de los niveles
+    
+-  `levels(factor)`: para obtener los niveles del factor
+
+```{r}
+nombres = c("Juan",  "Antonio", "Ricardo", "Juan", "Juan", "María", "María")
+nombres
+nombres.factor = factor(nombres)
+nombres.factor
+gender = c("M", "H", "H", "M","M","M", "M","H", "H")
+gender.factor = factor(gender)
+gender.factor
+gender.fact2 = as.factor(gender) # En este caso es lo mismo 
+gender.fact2
+gender.fact3 = factor(gender, levels = c("M", "H", "B")) # Se pueden asignar más niveles
+gender.fact3
+gender.fact4 = factor(gender, levels =c("M", "H", "B"), labels = c("Mujer", "Hombre", "Hermafrodita"))
+gender.fact4
+levels(gender.fact4)
+```
+
+## Factor ordenado
+
+<l class="definition">Factor ordenado.</l> Es un factor donde los niveles siguen un orden
+
+- `ordered(vector,levels=...)`: función que define un factor ordenado y tiene los mismos parámetros que factor
 
 
 
