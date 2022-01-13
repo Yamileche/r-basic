@@ -1,0 +1,22 @@
+---
+title: "Ejercicio1"
+author: "Yamil"
+date: "8/1/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Binomio de Newton
+
+$$(a+b)^n=\sum_{k=0}^n {n\choose k}a^{n-k}b^k$$
+
+```{r}
+binomioN = function(a,b,n){
+  sum(choose(n,0:n)*a^(n-0:n)*b^(0:n))
+}
+binomioN(5,3,6)
+```
+

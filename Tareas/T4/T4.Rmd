@@ -1,0 +1,83 @@
+---
+title: "T4"
+author: "Yamil"
+date: "11/1/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Problema 1
+```{r}
+A = matrix(c(1,4,0,3,2,3,1,0,3,2,0,4,4,1,2,0),nrow = 4)
+B = matrix(c(4,0,1,0,3,3,2,1,2,0,3,0,1,4,4,2),nrow = 4)
+```
+
+$AB=$
+```{r}
+A%*%B
+```
+$BA=$
+```{r}
+B%*%A
+```
+
+$(AB)^t=$
+```{r}
+t(A%*%B)
+```
+```{r}
+t(B)%*%A
+```
+$(AB)^{-1}=$
+```{r}
+solve(A%*%B)
+```
+$A^{-1}B^t=$
+```{r}
+solve(A)%*%t(B)
+```
+
+# Problema 2
+```{r}
+dni = 1:8
+```
+$dni^2=$
+```{r}
+dni^2
+```
+$\sqrt{dni}=$
+```{r}
+sqrt(dni)
+```
+$\displaystyle\sum_{i \in dni}i=$
+```{r}
+sum(dni)
+```
+ # Problema 3
+```{r}
+name = c("M", "A", "R", "I", "A", "S", "A", "N", "T", "O", "S")
+```
+$\textbf{Nombre}$
+```{r}
+name[1:5]
+```
+$\textbf{Apellido}$
+```{r}
+name[6:11]
+```
+$\textbf{Ordenado}$
+```{r}
+sort(name)
+```
+$\textbf{Matriz}$
+```{r}
+matrix(name, nrow =3)
+```
+
+
+ 
+
+
