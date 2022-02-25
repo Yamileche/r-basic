@@ -4,7 +4,8 @@ from math import sqrt
 
 d = dict()
 
-for i in range(1,10):
-    d.setdefault(i,sqrt(i))
+for i in range(1, 10):
+    d.setdefault(i, sqrt(i))
 
 print(d)
+
