@@ -1,0 +1,55 @@
+---
+title: "Plot"
+author: "Yamil"
+date: "21/2/2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Tarea 6
+
+# Problema 1
+```{r, echo=FALSE, fig.align='center'}
+curve(x^2-3*x+30,-15,15, main="Una parábola",xlab = expression(x), ylab = expression(y = x ^ 2 - 3 * x + 30))
+```
+
+# Problema 2
+No dan la misma gráfica pues en el primer caso solo se dibujan dos puntos y en el segundo es la gráfica del ejercicio anterior
+```{r, echo=FALSE, fig.align='center'}
+f<-function(x){x^2-3*x+30}
+I=c(-15,15)
+par(mfrow = c(1,2))
+plot(f(I), main="Una parábola",xlab = expression(x), ylab = expression(y = x ^ 2 - 3 * x + 30))
+plot(f,-15,15, main="Una parábola",xlab = expression(x), ylab = expression(y = x ^ 2 - 3 * x + 30))
+par(mfrow = c(1,1))
+```
+
+# Problema 3
+```{r, echo=FALSE, fig.align='center'}
+f<-function(x){(5)*(2^x)}
+curve(5*2^x,-1,25, ylab=expression(5%.%2^x), log="y")
+```
+
+# Problema 4
+```{r, echo=FALSE, fig.align='center'}
+curve(3*x,-10,20, xlab="", ylab="", col="blue", main="2 rectas", sub="Dos rectas con pendiente opuesto")
+curve(-3*x,-10,20, add=TRUE, col="green")
+legend(13,10,legend = c("3x", "-3x"),col = c("blue", "green"),lty= c(1, 1))
+```
+
+# Problema 5
+```{r, echo=FALSE, fig.align='center'}
+abline(h=0, col="red", cex=5)
+```
+# Problema 6
+```{r, echo=FALSE, fig.align='center'}
+curve(2*x+ 7, col = "blue", lwd=2, add = TRUE)
+```
+
+
+
+
